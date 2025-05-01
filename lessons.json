@@ -1,0 +1,128 @@
+[
+  {
+    "model": "materials.course",
+    "pk": 1,
+    "fields": {
+      "name": "Ботаника",
+      "preview": "",
+      "description": "Курс по ботанике"
+    }
+  },
+    {
+    "model": "materials.course",
+    "pk": 2,
+    "fields": {
+      "name": "Кулинария",
+      "preview": "",
+      "description": "Курс по кулинарии"
+    }
+  },
+    {
+    "model": "materials.course",
+    "pk": 3,
+    "fields": {
+      "name": "Танцы",
+      "preview": "",
+      "description": "Курс по танцам"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 1,
+    "fields": {
+      "name": "Строение растений",
+      "course": 1,
+      "description": "Урок 1. Строение растений",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686684/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 2,
+    "fields": {
+      "name": "Фотосинтез и его значение",
+      "course": 1,
+      "description": "Урок 2. Фотосинтез и его значение",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686685/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 3,
+    "fields": {
+      "name": "Разнообразие растений",
+      "course": 1,
+      "description": "Урок 2. Разнообразие растений",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686687/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 4,
+    "fields": {
+      "name": "Основы кулинарного искусства",
+      "course": 2,
+      "description": "Урок 1. Основы кулинарного искусства",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686688/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 5,
+    "fields": {
+      "name": "Приготовление здоровых блюд",
+      "course": 2,
+      "description": "Урок 2. Приготовление здоровых блюд",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686689/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 6,
+    "fields": {
+      "name": "Кулинарные традиции разных стран",
+      "course": 2,
+      "description": "Урок 3. Кулинарные традиции разных стран",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686690/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 7,
+    "fields": {
+      "name": "Основы танцевальных движений",
+      "course": 3,
+      "description": "Урок 1. Основы танцевальных движений",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686691/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 8,
+    "fields": {
+      "name": "Разнообразие стилей",
+      "course": 3,
+      "description": "Урок 2. Разнообразие стилей танца",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686692/"
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 9,
+    "fields": {
+      "name": "Создание хореографии",
+      "course": 3,
+      "description": "Урок 3. Создание хореографии",
+      "preview": "",
+      "video_url": "https://vkvideo.ru/@club228686693/"
+    }
+  }
+]

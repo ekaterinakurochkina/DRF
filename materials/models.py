@@ -16,7 +16,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название курса", help_text="Введите название курса")
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, verbose_name="Курс", help_text="Выберите курс",
-                               blank=True, null=True)
+                               blank=True, null=True, related_name='lessons')
     description = models.TextField(blank=True, null=True, verbose_name="Описание курса",
                                    help_text="Введите описание курса")
     preview = models.ImageField(upload_to="materials/preview", blank=True, null=True, verbose_name="Картинка",

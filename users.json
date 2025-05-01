@@ -1,0 +1,110 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$4n5b3RGVEw4VbCXk7oQC1I$/gIET/m9qYpN4dgTxSDR6PnWXA5O/eO/4yVGMAfkHfY=",
+      "last_login": "2025-05-01T12:09:06.890Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-04-20T11:19:59.738Z",
+      "email": "admin@admin.com",
+      "phone": null,
+      "avatar": "",
+      "city": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$iFytvJER7bvFda3pSkocl8$u7YVSFTaKpxM7SHQNUrp79x10K6EhWPzBjXVw5z79G4=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-20T11:24:06.652Z",
+      "email": "katifedr@mail.ru",
+      "phone": null,
+      "avatar": "",
+      "city": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$2nARZoqvpepgvFCG89tj5P$pG5nUWZyJlEovt8q8dgjxfoZl6MpW2/nZLSbgsnSnJk=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-20T11:24:36.259Z",
+      "email": "ekaterina79fed@gmail.com",
+      "phone": null,
+      "avatar": "",
+      "city": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "course": 1,
+      "lesson": null,
+      "payment_date": "2025-05-01T14:20:02.879Z",
+      "payment_amount": 5000,
+      "payment_method": "transfer"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "course": null,
+      "lesson": 4,
+      "payment_date": "2025-05-01T14:20:25.029Z",
+      "payment_amount": 500,
+      "payment_method": "cash"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 6,
+    "fields": {
+      "user": 2,
+      "course": 2,
+      "lesson": null,
+      "payment_date": "2025-05-01T14:20:44.678Z",
+      "payment_amount": 10000,
+      "payment_method": "transfer"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 7,
+    "fields": {
+      "user": 3,
+      "course": null,
+      "lesson": 7,
+      "payment_date": "2025-05-01T14:21:00.289Z",
+      "payment_amount": 700,
+      "payment_method": "cash"
+    }
+  }
+]
