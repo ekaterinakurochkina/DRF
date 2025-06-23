@@ -1,4 +1,4 @@
-ame: Django CI
+name: Django CI
 on: [ push, pull_request ]
 jobs:
   lint:
@@ -11,7 +11,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version:'3.11'
+          python-version: 3.11
 
       - name: Install flake8
         run: |
@@ -32,7 +32,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version:'3.11'
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
@@ -49,8 +49,12 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Log in in Docker hub
-        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+      - name: Login to Docker Hub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }} .
