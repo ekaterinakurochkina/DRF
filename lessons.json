@@ -8,7 +8,7 @@
       "description": "Курс по ботанике"
     }
   },
-    {
+  {
     "model": "materials.course",
     "pk": 2,
     "fields": {
@@ -17,7 +17,7 @@
       "description": "Курс по кулинарии"
     }
   },
-    {
+  {
     "model": "materials.course",
     "pk": 3,
     "fields": {

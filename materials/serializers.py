@@ -1,8 +1,8 @@
+from materials.models import Course, Lesson
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-
-from materials.models import Course, Lesson
 from users.serializer import PaymentsSerializer
+
 
 class LessonSerializer(ModelSerializer):
     course = serializers.StringRelatedField()
@@ -12,6 +12,7 @@ class LessonSerializer(ModelSerializer):
     class Meta:
         model = Lesson
         fields = ("id", "name", "description", "preview", "video_url", "course", "payment")
+
 
 class CourseSerializer(ModelSerializer):
     lessons = LessonSerializer(many=True, read_only=True)
@@ -26,6 +27,4 @@ class CourseSerializer(ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ("id", "name", "description", "preview", "lessons","lesson_count", "payment")
-
-
+        fields = ("id", "name", "description", "preview", "lessons", "lesson_count", "payment")

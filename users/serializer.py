@@ -1,10 +1,5 @@
-
 from rest_framework import serializers
-from rest_framework.fields import SerializerMethodField
-from rest_framework.serializers import ModelSerializer, Serializer
 
-from django.db import models
-from materials.models import Course, Lesson
 from users.models import Payments
 
 
@@ -41,6 +36,3 @@ class PaymentsSerializer(serializers.ModelSerializer):
 
         # Сериализация связанных платежей
         return PaymentsSerializer(related_payments, many=True).data
-
-
-

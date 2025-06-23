@@ -34,7 +34,7 @@ class MaterialsAdmin(UserAdmin):
             },
         ),
     )
-    ordering = ('pk', )
+    ordering = ('pk',)
     readonly_fields = ("last_login", "date_joined")
 
 
@@ -42,5 +42,5 @@ class MaterialsAdmin(UserAdmin):
 class PaymentsAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'course', 'lesson', 'payment_date', 'payment_amount',
                     'payment_method')
-    list_filter = ('id', 'user','course', 'lesson',)
+    list_filter = ('id', 'user', 'course', 'lesson',)
     search_fields = ('user',)

@@ -1,8 +1,8 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-
 from users.models import User  # Предполагается, что у вас есть модель User
+
 from .models import Lesson, Course, Subscription
 
 

@@ -13,7 +13,6 @@ import os
 import sys
 from pathlib import Path
 
-from django.conf.global_settings import DATABASES, STATIC_ROOT
 from dotenv import load_dotenv
 
 load_dotenv(".env")

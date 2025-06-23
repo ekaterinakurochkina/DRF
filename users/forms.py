@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-
 from materials.forms import StyleFormMixin
+
 from .models import User
 
 
@@ -42,7 +42,6 @@ class UserUpdateForm(StyleFormMixin, ModelForm):
             "phone",
             "city",
         )
-
 
 
 class PasswordRecoveryForm(StyleFormMixin, forms.Form):
