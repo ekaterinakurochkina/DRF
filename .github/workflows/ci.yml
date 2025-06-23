@@ -46,6 +46,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Add GitHub to known_hosts
+      - run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
       - name: Check out code
         uses: actions/checkout@v3
 
