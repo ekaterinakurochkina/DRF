@@ -13,7 +13,7 @@ import os
 import sys
 from pathlib import Path
 
-from django.conf.global_settings import DATABASES
+from django.conf.global_settings import DATABASES, STATIC_ROOT
 from dotenv import load_dotenv
 
 load_dotenv(".env")
@@ -150,6 +150,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
