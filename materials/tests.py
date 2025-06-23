@@ -1,11 +1,8 @@
-import os
-
-import django
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-
 from users.models import User
+
 from .models import Lesson, Course
 
 
@@ -92,5 +89,3 @@ class MaterialsTestCase(APITestCase):
         self.assertEqual(first_lesson["name"], self.lesson.name)
         self.assertEqual(first_lesson["course"], self.course.id)
         self.assertEqual(first_lesson["owner"], self.user.id)
-
-
