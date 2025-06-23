@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'users',
-    'materials',
+    # 'users',
+    # 'materials',
     'django_filters',
+    'users.apps.UsersConfig',
+    'materials.apps.MaterialsConfig',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +73,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
