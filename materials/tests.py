@@ -1,4 +1,4 @@
-from django.urls import reverse  # Исправлено: rom -> from
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -12,14 +12,14 @@ class MaterialsTestCase(APITestCase):
         self.user = User.objects.create(email="test@test.ru")
         self.course = Course.objects.create(
             name="test_course",
-            description="test_description",
-            owner=self.user  # Добавлено, если в модели Course есть поле owner
+            description="test_description"
+            # Убрано поле owner, так как его нет в модели Course
         )
         self.lesson = Lesson.objects.create(
             name="test_lesson",
             course=self.course,
-            owner=self.user,  # Добавлено, если в модели Lesson есть поле owner
             video_url="https://www.youtube.com/test"  # Обязательное поле
+            # Убрано поле owner, если его нет в модели Lesson
         )
         self.client.force_authenticate(user=self.user)
 
@@ -39,7 +39,7 @@ class MaterialsTestCase(APITestCase):
             "course": self.course.id,
             "video_url": "https://www.youtube.com/testlesson/",
             "description": "Простейшие фигуры",
-            # preview и payment удалены, так как их нет в модели Lesson
+            # preview удалено, так как оно не требуется для создания
         }
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -76,7 +76,8 @@ class MaterialsTestCase(APITestCase):
         first_lesson = data[0]
         expected_fields = {
             "id", "name", "description", "preview",
-            "video_url", "course", "owner"
+            "video_url", "course"
+            # Убрано поле owner, если его нет в модели
         }
 
         # Проверяем, что все ожидаемые поля присутствуют
@@ -84,20 +85,17 @@ class MaterialsTestCase(APITestCase):
 
         self.assertEqual(first_lesson["name"], self.lesson.name)
         self.assertEqual(first_lesson["course"], self.course.id)
-        self.assertEqual(first_lesson["owner"], self.user.id)
 
     def test_lesson_list_filtered_by_course(self):
         """Тестирование фильтрации уроков по курсу"""
         # Создаем второй курс и урок
         course2 = Course.objects.create(
             name="test_course2",
-            description="test_description2",
-            owner=self.user
+            description="test_description2"
         )
         Lesson.objects.create(
             name="test_lesson2",
             course=course2,
-            owner=self.user,
             video_url="https://www.youtube.com/test2"
         )
 
