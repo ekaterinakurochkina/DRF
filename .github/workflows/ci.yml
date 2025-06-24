@@ -1,6 +1,6 @@
 name: Django CI/CD Pipeline
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 env:
   DOCKER_IMAGE: ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
@@ -62,20 +62,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH key
+      - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Deploy to production
+      - name: Deploy to server
         run: |
-          ssh ${{ env.SSH_OPTS }} ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-          docker pull ${{ env.DOCKER_IMAGE }}
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{secrets.SERVER_IP }} <<'EOF'
+          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
           docker stop myapp || true
           docker rm myapp || true
-          docker run -d \
-            --name myapp \
-            -p 80:8000 \
-            -e DJANGO_SETTINGS_MODULE=config.settings.production \
-            ${{ env.DOCKER_IMAGE }}
+          docker run -d --name myapp-p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
           EOF

@@ -1,23 +1,23 @@
-# from django.urls import reverse
-# from rest_framework import status
-# from rest_framework.test import APITestCase
-# from users.models import User
-#
-# from .models import Lesson, Course
-#
-#
-# class MaterialsTestCase(APITestCase):
-#
-#     def setUp(self):
-#         self.user = User.objects.create(email="test@test.ru")
-#         self.course = Course.objects.create(
-#             name="test_course", description="test_description", owner=self.user
-#         )
-#         self.lesson = Lesson.objects.create(
-#             name="test_lesson", course=self.course, owner=self.user
-#         )
-#         self.client.force_authenticate(user=self.user)
-#
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
+from users.models import User
+
+from .models import Lesson, Course
+
+
+class MaterialsTestCase(APITestCase):
+
+    def setUp(self):
+        self.user = User.objects.create(email="test@test.ru")
+        self.course = Course.objects.create(
+            name="test_course", description="test_description", owner=self.user
+        )
+        self.lesson = Lesson.objects.create(
+            name="test_lesson", course=self.course, owner=self.user
+        )
+        self.client.force_authenticate(user=self.user)
+
 #     def test_lesson_retrieve(self):
 #         """Тестирование просмотра урока"""
 #         url = reverse("materials:lessons_retrieve", args=(self.lesson.pk,))
