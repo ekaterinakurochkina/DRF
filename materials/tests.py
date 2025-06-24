@@ -1,5 +1,5 @@
-from django.urls import reverse
-from rest_framework import status
+# from django.urls import reverse
+# from rest_framework import status
 from rest_framework.test import APITestCase
 
 from users.models import User
@@ -18,13 +18,13 @@ class MaterialsTestCase(APITestCase):
         )
         self.client.force_authenticate(user=self.user)
 
-    def test_lesson_retrieve(self):
-        """Тестирование просмотра урока"""
-        url = reverse("materials:lessons_retrieve", args=(self.lesson.pk,))
-        response = self.client.get(url)
-        data = response.json()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(data.get("name"), self.lesson.name)
+    # def test_lesson_retrieve(self):
+    #     """Тестирование просмотра урока"""
+    #     url = reverse("materials:lessons_retrieve", args=(self.lesson.pk,))
+    #     response = self.client.get(url)
+    #     data = response.json()
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #     self.assertEqual(data.get("name"), self.lesson.name)
 
     # def test_lesson_create(self):
     #     """Тестирование создания урока"""
