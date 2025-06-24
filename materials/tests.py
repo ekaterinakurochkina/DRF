@@ -11,15 +11,10 @@ class MaterialsTestCase(APITestCase):
     def setUp(self):
         self.user = User.objects.create(email="test@test.ru")
         self.course = Course.objects.create(
-            name="test_course",
-            description="test_description"
-            # Убрано поле owner, так как его нет в модели Course
+            name="test_course", description="test_description", owner=self.user
         )
         self.lesson = Lesson.objects.create(
-            name="test_lesson",
-            course=self.course,
-            video_url="https://www.youtube.com/test"  # Обязательное поле
-            # Убрано поле owner, если его нет в модели Lesson
+            name="test_lesson", course=self.course, owner=self.user
         )
         self.client.force_authenticate(user=self.user)
 
@@ -36,10 +31,11 @@ class MaterialsTestCase(APITestCase):
     #     url = reverse("materials:lessons_create")
     #     data = {
     #         "name": "Геометрические фигуры",
-    #         "course": self.course.id,
+    #         "course": self.course.id,  # Используйте существующий курс
     #         "video_url": "https://www.youtube.com/testlesson/",
     #         "description": "Простейшие фигуры",
-    #         # preview удалено, так как оно не требуется для создания
+    #         "preview": None,
+    #         "payment": {}
     #     }
     #     response = self.client.post(url, data, format="json")
     #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -65,45 +61,31 @@ class MaterialsTestCase(APITestCase):
     #     """Тестирование просмотра списка уроков"""
     #     url = reverse("materials:lessons_list")
     #     response = self.client.get(url)
+    #
+    #     # Проверка статуса ответа
     #     self.assertEqual(response.status_code, status.HTTP_200_OK)
     #
     #     data = response.json()
     #
-    #     # Для ListAPIView без пагинации получаем список напрямую
-    #     self.assertIsInstance(data, list)
-    #     self.assertGreater(len(data), 0)
+    #     # Проверка наличия ключа 'results' в ответе
+    #     self.assertIn("results", data)
     #
-    #     first_lesson = data[0]
+    #     results = data["results"]
+    #
+    #     # Проверка, что список не пустой (должен содержать созданный в setUp урок)
+    #     self.assertGreater(len(results), 0)
+    #
+    #     # Проверка структуры первого урока
+    #     first_lesson = results[0]
     #     expected_fields = {
     #         "id", "name", "description", "preview",
-    #         "video_url", "course"
-    #         # Убрано поле owner, если его нет в модели
-    #     }
+    #         "video_url", "course", "owner"
+    #     }  # Добавьте/удалите поля в соответствии с вашим сериализатором
     #
-    #     # Проверяем, что все ожидаемые поля присутствуют
-    #     self.assertTrue(expected_fields.issubset(first_lesson.keys()))
+    #     # Проверка, что все ожидаемые поля присутствуют
+    #     self.assertEqual(set(first_lesson.keys()), expected_fields)
     #
+    #     # Проверка конкретных значений
     #     self.assertEqual(first_lesson["name"], self.lesson.name)
     #     self.assertEqual(first_lesson["course"], self.course.id)
-    #
-    # def test_lesson_list_filtered_by_course(self):
-    #     """Тестирование фильтрации уроков по курсу"""
-    #     # Создаем второй курс и урок
-    #     course2 = Course.objects.create(
-    #         name="test_course2",
-    #         description="test_description2"
-    #     )
-    #     Lesson.objects.create(
-    #         name="test_lesson2",
-    #         course=course2,
-    #         video_url="https://www.youtube.com/test2"
-    #     )
-    #
-    #     # Фильтруем по первому курсу
-    #     url = reverse("materials:lessons_list") + f"?pk={self.course.id}"
-    #     response = self.client.get(url)
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-    #
-    #     data = response.json()
-    #     self.assertEqual(len(data), 1)  # Должен быть только 1 урок для этого курса
-    #     self.assertEqual(data[0]["name"], self.lesson.name)
+    #     self.assertEqual(first_lesson["owner"], self.user.id)
